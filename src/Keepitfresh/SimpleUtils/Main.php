@@ -10,6 +10,8 @@ use pocketmine\command\Command;
 use pocketmine\Utils\TextFormat as TF;
 class Main extends PluginBase{
 	public $label1 = TF::GRAY."SimpleUtils: ";
+	public $lastpos = null;
+
 	public function onEnable() : void{
 		$this->getLogger()->info("Hello World!");
 	}
@@ -17,7 +19,7 @@ class Main extends PluginBase{
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
 		switch($command->getName()){
 			case "fly":
-			if(!$sender->hasPermission("fly.use"))
+			if(!$sender->hasPermission("utils.fly.use"))
 			{
 				$sender->sendMessage($this->label1.TF::RED."You do not have permission to use /fly");
 			}else{
@@ -33,7 +35,7 @@ class Main extends PluginBase{
 			}
 			return true;
 			case "heal":
-			if(!$sender->hasPermission("heal.use"))
+			if(!$sender->hasPermission("utils.heal.use"))
 			{
 				$sender->sendMessage($this->label1.TF::RED."You do not have permission to use /heal");
 			}else{
@@ -46,4 +48,5 @@ class Main extends PluginBase{
 	public function onDisable() : void{
 		$this->getLogger()->info("Bye");
 	}
+
 }
